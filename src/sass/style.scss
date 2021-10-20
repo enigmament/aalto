@@ -1,0 +1,116 @@
+@import 'font';
+
+$tablet: 320px;
+
+$primarycolor: #003479;
+
+$titleColor: $primarycolor;
+$labelcolor:  $primarycolor;
+$linkcolor:  $primarycolor;
+$bgLinkPagination:  $primarycolor;
+$linkpagination: #fff;
+
+$borderTable: #00A0DF;
+
+$bgAreas: #F4F4F4;
+
+.main {
+    font-family:'Karbon';
+    display: flex;
+    flex-direction: column;
+    .menu {
+        background-color: $bgAreas;
+        width: 100%;
+        padding-left: 20px;
+        padding-bottom: 20px;
+
+        .title {
+            font-family: Karbon-Semibold;
+            color: $titleColor;
+            font-size: 36px;
+            text-transform: uppercase;
+            text-align: center;
+        }
+
+        .label {
+            font-family: Karbon-Semibold;
+            //text-align: left;
+            font-size: 20px;
+            text-transform:uppercase;
+            color: $labelcolor;
+        }
+    }
+
+    .tablesearch  {
+        font-family: Karbon !important;
+        background-color: $bgAreas;
+        width: 100%;
+    
+
+        .Mui-selected {
+            color: $linkpagination;
+            background-color: $bgLinkPagination;
+
+            &:hover {
+                background-color: $bgLinkPagination;
+            }
+        }
+
+        .tablecustom {
+            padding-left: 30px;
+            padding-right: 30px;
+            width: 100%;
+            border-spacing: 0 20px;
+            border-collapse: separate;
+            padding-bottom: 39px;
+
+            .titlehead {
+                th {
+                    font-family: Karbon-Semibold;
+                    //text-align: left;
+                    font-size: 20px;
+                    text-transform:uppercase;
+                    color: $labelcolor;
+                }
+            }
+
+            .rowbody {
+                margin-top:20px;
+                background-color: #fff;
+               
+                border-collapse: collapse;
+
+                td {
+                    background-color: transparent;
+                    border-bottom: 2px solid $borderTable;
+                    font-size: 18px;
+                  
+                    &.image, &.uid {
+                        text-align: center;
+                    }
+                }
+            }
+        }
+        
+        
+    }
+
+}
+
+
+
+@media (min-width: $tablet) {
+    .main {
+        flex-direction: row;
+
+        .menu {
+            width: $tablet;
+            margin-right: 60px;
+        }
+
+        .tablesearch {
+            width: 830px;
+        }
+    }
+   
+}
