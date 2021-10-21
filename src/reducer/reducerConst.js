@@ -1,0 +1,3 @@
+export const SAVE_ORGINAL_DATA = "SAVE_ORGINAL_DATA";
+export const FILTER_TODO = "FILTER_TODO";
+export const RESET_FILTER_TODO = "RESET_FILTER_TODO";

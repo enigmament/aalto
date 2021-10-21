@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { connect } from "react-redux";
 
 import Pagination from '@mui/material/Pagination';
 import Stack from '@mui/material/Stack';
@@ -16,33 +17,35 @@ import NotCompletedImg from './assets/images/Tracciato_731@1X.png';
 
 
 
-export default function TableElements(props) {
+const TableElements = function (props) {
 
-    const [page_number, setPageNumber] = useState(1);
+    let [page_number, setPageNumber] = useState(1);
+
+    const listElement = props.results;
     const page_size = 5
-    const totalPage = Math.ceil(props.list.length / page_size);
+    const totalPage = Math.ceil(listElement.length / page_size);
+    page_number = page_number > totalPage ? totalPage : page_number;
     const startpage = (page_number - 1) * page_size;
     const endPage = page_number * page_size;
-    const pagetoShow = props.list.slice(startpage, endPage);
+    const pagetoShow = listElement.slice(startpage, endPage);
 
     return (<div className="tablesearch">
-        <Table class="tablecustom">
+        <Table className="tablecustom">
             <TableHead>
-                <TableRow class="titlehead">
-                    <TableCell>User ID</TableCell>
+                <TableRow className="titlehead">
+                    <TableCell className="uid">User ID</TableCell>
                     <TableCell>Title</TableCell>
-                    <TableCell>Completed</TableCell>
+                    <TableCell className="image">Completed</TableCell>
                 </TableRow>
             </TableHead>
             <TableBody>
-                {pagetoShow.map((todo) => {
-                    const imgpath = "/assets/images";
+                {pagetoShow.map((todo, index) => {
                     const completedimg = todo.completed ? CompletedImg : NotCompletedImg
                     return (
-                        <TableRow class="rowbody">
-                            <TableCell class="uid">{todo.userId}</TableCell>
+                        <TableRow key={`${index}_${todo.id}`} className="rowbody">
+                            <TableCell className="uid">{todo.userId}</TableCell>
                             <TableCell>{todo.title}</TableCell>
-                            <TableCell class="image"><img src={completedimg} /></TableCell>
+                            <TableCell className="image"><img src={completedimg} /></TableCell>
                         </TableRow>
                     )
                 })
@@ -50,7 +53,15 @@ export default function TableElements(props) {
             </TableBody>
         </Table>
         <Stack sx={{ paddingBottom: "40px", alignItems: "center" }} spacing={2}>
-            <Pagination count={totalPage} onChange={(evt, page) => { setPageNumber(page) }} />
+            <Pagination count={totalPage} page={page_number} onChange={(evt, page) => { setPageNumber(page) }} />
         </Stack>
     </div>)
 }
+
+
+const mapStateToProps = (state) => {
+    return { results: state.results };
+};
+
+
+export default connect(mapStateToProps)(TableElements);
