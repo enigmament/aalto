@@ -14,37 +14,83 @@ $borderTable: #00A0DF;
 
 $bgAreas: #F4F4F4;
 
+$searchColor: #644C79;
+
 .main {
-    font-family:'Karbon';
-    display: flex;
-    flex-direction: column;
+  
+    //display: flex;
+    //flex-direction: column;
     .menu {
+        color: $titleColor;
+        font-family:'Karbon';
         background-color: $bgAreas;
-        width: 100%;
-        padding-left: 20px;
+        padding-left: 30px;
+        padding-right: 30PX;
         padding-bottom: 20px;
+        padding-top: 20px;
+       
+
+      
+
+        .inputsearch, .switchSearch, .userIDSearch {
+            padding-bottom: 60px;
+        }
+
+        .inputTextWrapper {
+            border: 1px solid $primarycolor;
+            display: flex;
+            align-items: center;
+
+            .titleTextSearch {
+                flex-grow: 1;
+            }
+        }
 
         .title {
             font-family: Karbon-Semibold;
-            color: $titleColor;
             font-size: 36px;
             text-transform: uppercase;
             text-align: center;
+            padding-bottom: 40px;
         }
 
         .label {
             font-family: Karbon-Semibold;
-            //text-align: left;
             font-size: 20px;
-            text-transform:uppercase;
+            text-transform: uppercase;
             color: $labelcolor;
+            margin: 0px;
+            padding-bottom: 30px;
+        }
+
+        .emptySwitch {
+            font-family: Karbon-Semibold;
+            font-size: 20px;
+            vertical-align: middle;
+            cursor: pointer;
+            
+            &.filtercompletednull {
+                background-color: $titleColor ;
+                color: $bgAreas;
+            }
+        }
+
+        .reset {
+            text-align: center;
+            span {
+                font-size: 20px;
+                color: $titleColor;
+                text-decoration: underline;
+                cursor: pointer;
+            }
+
         }
     }
 
     .tablesearch  {
-        font-family: Karbon !important;
+        font-family: Karbon;
         background-color: $bgAreas;
-        width: 100%;
+       // width: 100%;
     
 
         .Mui-selected {
@@ -59,7 +105,7 @@ $bgAreas: #F4F4F4;
         .tablecustom {
             padding-left: 30px;
             padding-right: 30px;
-            width: 100%;
+           
             border-spacing: 0 20px;
             border-collapse: separate;
             padding-bottom: 39px;
@@ -87,9 +133,12 @@ $bgAreas: #F4F4F4;
                   
                     &.image, &.uid {
                         text-align: center;
+                        width:15%;
                     }
                 }
             }
+
+           
         }
         
         
@@ -99,13 +148,10 @@ $bgAreas: #F4F4F4;
 
 
 
-@media (min-width: $tablet) {
+/*@media (min-width: $tablet) {
     .main {
-        flex-direction: row;
-
         .menu {
-            width: $tablet;
-            margin-right: 60px;
+           // margin-right: 60px;
         }
 
         .tablesearch {
@@ -113,4 +159,4 @@ $bgAreas: #F4F4F4;
         }
     }
    
-}
+}*/
