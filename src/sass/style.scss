@@ -59,6 +59,11 @@ $searchColor: #644c79;
             padding-bottom: 30px;
         }
 
+        .itemCompleted {
+            display: flex;
+            align-items: center;
+        }
+
         .emptySwitch {
             font-family: Karbon-Semibold;
             font-size: 20px;

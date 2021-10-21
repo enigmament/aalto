@@ -5,9 +5,10 @@ import { connect } from "react-redux";
 import { filterToDo, resetFilterToDo } from "./reducer/actions";
 
 import { useTheme } from '@mui/material/styles';
-import { Paper, Switch, InputBase, Select, MenuItem, IconButton } from '@mui/material';
+import { Button, InputBase, Select, MenuItem, IconButton } from '@mui/material';
 import SearchIcon from '@mui/icons-material/Search';
-
+import { styled } from '@mui/system';
+import SwitchUnstyled, { switchUnstyledClasses } from '@mui/core/SwitchUnstyled';
 
 
 function getStyles(name, usersID, theme) {
@@ -18,6 +19,67 @@ function getStyles(name, usersID, theme) {
                 : theme.typography.fontWeightMedium,
     };
 }
+
+const Root = styled('span')(`
+    font-size: 0;
+    position: relative;
+    display: inline-block;
+    width: 100px;
+    height: 40px;
+
+    margin: 10px;
+    cursor: pointer;
+
+    & .${switchUnstyledClasses.track} {
+        background: #B3C3D3;
+        border-radius: 20px;
+        display: block;
+        height: 100%;
+        width: 100%;
+        position: absolute;
+    }
+
+    & .${switchUnstyledClasses.thumb} {
+        display: block;
+        width: 24px;
+        height: 24px;
+        top: 8px;
+        left: 8px;
+        border-radius: 30px;
+        background-color: #FFF;
+        position: relative;
+        transition: all 200ms ease;
+    }
+
+    &.${switchUnstyledClasses.focusVisible} .${switchUnstyledClasses.thumb} {
+        background-color: rgba(255,255,255,1);
+        box-shadow: 0 0 1px 8px rgba(0,0,0,0.25);
+    }
+
+    &.${switchUnstyledClasses.checked} { 
+    .${switchUnstyledClasses.thumb} {
+        left: 68px;
+        top: 8px;
+        background-color: #FFF;
+    }
+
+    .${switchUnstyledClasses.track} {
+        background: #007FFF;
+    }
+    }
+
+    & .${switchUnstyledClasses.input} {
+        cursor: inherit;
+        position: absolute;
+        width: 100%;
+        height: 100%;
+        top: 0;
+        left: 0;
+        opacity: 0;
+        z-index: 1;
+        margin: 0;
+  }`);
+
 
 const SearchMenu = (props) => {
     const theme = useTheme();
@@ -82,17 +144,16 @@ const SearchMenu = (props) => {
             </div>
             <div className="switchSearch">
                 <p className="label">Completed</p>
-                <div>
-                    <span className={switchNullClass} onClick={() => { setCompleted(null) }}>NO</span>
-                    <Switch color="primary"
-                        value="YES"
-                        checked={completed}
+                <div className="itemCompleted">
+                    <span className={switchNullClass}>NO</span>
+
+                    <SwitchUnstyled component={Root}  value="YES" checked={completed}
                         onChange={(event) => {
                             const value = event.target.checked;
                             toggleCompleted(event.target.checked);
                             setCompleted(value);
-                        }}
-                    />
+                        }}/>
+                    <Button variant="text" variant="contained" onClick={() => { setCompleted(null) }}>Reset switch</Button>
                 </div>
 
             </div>
