@@ -14,4 +14,4 @@ Ho aggiunto l'aggiornamento della lista ai seguenti eventi:
 - onblur dell input di tipo testo,
 - click sulla lente di ingrandimento
 
-La scritta "NO" a fianco dello swuitch l'ho resa cliccabile per resettare il filtro completed
+A fianco lo switch ho aggiunto un bottone per resettare lo stato dello switch in modo che tolga il flitro se true o false 
